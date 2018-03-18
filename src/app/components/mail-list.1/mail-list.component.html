@@ -1,0 +1,33 @@
+<mat-toolbar color="secondary">
+
+  <mat-toolbar-row>
+    <span>{{ first }}-{{ (mails | async).length }} of {{ (mails | async).length }}</span>
+    <!-- <mat-icon class="example-icon">verified_user</mat-icon> -->
+  </mat-toolbar-row>
+
+  <!-- <mat-toolbar-row>
+    <span>Third Line</span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon">favorite</mat-icon>
+    <mat-icon class="example-icon">delete</mat-icon>
+  </mat-toolbar-row> -->
+</mat-toolbar>
+
+<mat-card routerLink="/mail/{{mail.messageId}}" routerLinkActive="active" class="mail-entry" *ngFor="let mail of mails | async">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>
+        <span class="sender">{{ mail.from.text }}</span>
+        <span class="timestamp">{{ mail.date | date : (isToday(mail.date) ? "h:mm a" : undefined) }}</span>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <span class="subject">{{ mail.subject }}</span>
+        <span>{{ mail.body }}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions *ngIf="mail.isInvitation">
+      <button mat-button>ACCEPT</button>
+      <button mat-button>TENTATIVE</button>
+      <button mat-button>DECLINE</button>
+    </mat-card-actions>
+</mat-card>

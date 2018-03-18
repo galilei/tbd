@@ -1,0 +1,8 @@
+$fa-font-path: "~font-awesome/fonts";
+ @import '~font-awesome/scss/font-awesome';
+
+.fab-container {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+}

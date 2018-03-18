@@ -1,0 +1,45 @@
+<mat-horizontal-stepper linear="false" #stepper="matHorizontalStepper">
+  <mat-step stepControl="firstFormGroup">
+    <ng-template matStepLabel>Account details</ng-template>
+    <form>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Name" [formControl]="nameFormControl" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" [formControl]="emailFormControl" type="email" required>
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" type="password">
+        </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step stepControl="secondFormGroup">
+    <ng-template matStepLabel>Server details</ng-template>
+    <!-- <form>
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form> -->
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

@@ -1,0 +1,6 @@
+<!-- <input class="ng-hide" id="input-file-id" webkitdirectory mozdirectory msdirectory odirectory directory type="file" />
+<button mat-button mat-raised mat-primary>Choose Files</button> -->
+<br><mat-progress-bar mode="determinate" [value]="parsedSize / totalSize * 100"></mat-progress-bar><br>
+{{ currentPath }}<br>
+{{ parsedSize }}/{{ totalSize }}<br>
+{{ (parsedSize / totalSize) | percent:'1.2-2' }}<br>

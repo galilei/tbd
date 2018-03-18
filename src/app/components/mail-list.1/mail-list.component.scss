@@ -1,0 +1,24 @@
+// .mail-entry {
+  // width: 400px;
+// }
+
+ .timestamp {
+   position: absolute;
+   right: 0px;
+   margin-right: 16px;
+ }
+
+ .sender {
+   font-weight: bold;
+ }
+
+ .subject {
+   color: blue;
+   font-weight: bold;
+   margin-right: 5px;
+ }
+
+.header-image {
+  background-image: url('../../../assets/unknown.gif');
+  background-size: cover;
+}

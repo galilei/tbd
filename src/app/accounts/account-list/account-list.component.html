@@ -1,0 +1,12 @@
+<div *ngIf="accounts$ | async as accounts; else loading">
+  <div *ngFor="let account of accounts">
+    {{ account.name }}
+  </div>
+</div>
+<div class="fab-container">
+  <button mat-fab color="primary" class="mat-elevation-z8" routerLink="/accounts/add" routerLinkActive="active">
+    <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+  </button>
+</div>
+
+<ng-template #loading>No accounts</ng-template>
