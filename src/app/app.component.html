@@ -1,26 +1,39 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <!-- <span>Awesome Mail Client</span> -->
-    <button mat-button (click)=sidenav.toggle()>Toggle</button>
-    <button routerLink="/" routerLinkActive="active" mat-button>Tag List</button>
-    <button routerLink="/mail" routerLinkActive="active" mat-button>Mail List</button>
-    <button routerLink="/import/thunderbird" routerLinkActive="active" mat-button>Import mail</button>
-    <button routerLink="/accounts" routerLinkActive="active" mat-button>Accounts</button>
-  </mat-toolbar-row>
-</mat-toolbar>
-<mat-toolbar>
-  <mat-toolbar-row>
-    <form class="searchform">
-      <mat-form-field>
-        <input type="text" matInput formControl="myControl">
-        <mat-placeholder>
-          <i class="fa fa-search" aria-hidden="true">search</i>
-        </mat-placeholder>
-      </mat-form-field>
-    </form>
-  </mat-toolbar-row>
+<div class="fab-container">
+  <button mat-fab color="primary" class="mat-elevation-z8">
+    <mat-icon>home</mat-icon>
+    <!-- <i class="fa fa-plus fa-2x" aria-hidden="true"></i> -->
+  </button>
+</div>
 
-  <!-- <mat-toolbar-row>
+<mat-sidenav-container [class.closed]="!sidenav.opened">
+  <mat-sidenav #sidenav mode="side" fixedInViewport="false" opened>
+    <div>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <left-menu [collapsed]="!sidenav.opened"></left-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="secondary">
+      <mat-toolbar-row>
+        <form class="searchform">
+          <mat-form-field>
+            <input type="text" #input matInput>
+            <mat-placeholder>
+              <mat-icon>search</mat-icon>
+              <!-- <span>Search</span> -->
+            </mat-placeholder>
+            <button mat-button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="input.value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </form>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <!-- <mat-toolbar-row>
         <span>Second Line</span>
         <span class="example-spacer"></span>
         <mat-icon class="example-icon">verified_user</mat-icon>
@@ -32,14 +45,9 @@
         <mat-icon class="example-icon">favorite</mat-icon>
         <mat-icon class="example-icon">delete</mat-icon>
       </mat-toolbar-row> -->
-</mat-toolbar>
-<mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" fixedInViewport="false" opened>
-    <tag-view (onTagSelected)="maillist.setTag($event)"></tag-view>
-  </mat-sidenav>
-  <mat-sidenav-content>
+
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-
+<new-mail></new-mail>

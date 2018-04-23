@@ -33,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
-import { MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatIconModule, MatStepperModule, MAT_LABEL_GLOBAL_OPTIONS, MatFormFieldModule, MatInputModule, MatSidenavModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatIconModule, MatStepperModule, MAT_LABEL_GLOBAL_OPTIONS, MatFormFieldModule, MatInputModule, MatSidenavModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatOptionModule, MatSelectModule, MatPaginatorModule, MatIconRegistry, MatChipsModule, MatAutocompleteModule, MatTooltipModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
@@ -42,6 +42,10 @@ import { TagViewComponent } from './components/tag-view/tag-view.component';
 import { AccountListComponent } from './accounts/account-list/account-list.component';
 import { MailImporterService } from './providers/mail-importer.service';
 import { AccountAddComponent } from './accounts/account-add/account-add.component';
+import { EditorComponent } from './composer/editor/editor.component';
+import { NewMailComponent } from './composer/new-mail/new-mail.component';
+import { LeftMenuComponent } from './components/left-menu/left-menu.component';
+import { MailListItemComponent } from './components/mail-list-item/mail-list-item.component';
 
 
 // AoT requires an exported function for factories
@@ -59,7 +63,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     MailImporterComponent,
     TagViewComponent,
     AccountListComponent,
-    AccountAddComponent
+    AccountAddComponent,
+    EditorComponent,
+    NewMailComponent,
+    LeftMenuComponent,
+    MailListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +88,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatFormFieldModule,
     MatInputModule,
     MatSidenavModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatListModule,
+    MatTooltipModule,
 
     // For forms
     ReactiveFormsModule,
@@ -102,10 +117,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     ElectronService,
     ESService,
     MailImporterService,
+    MatIconRegistry,
     {
       provide: MAT_LABEL_GLOBAL_OPTIONS,
       useValue: {
-        float: 'always'
+        float: 'auto'
       }
     },
     {

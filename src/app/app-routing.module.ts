@@ -9,30 +9,12 @@ import { AccountListComponent } from './accounts/account-list/account-list.compo
 import { AccountAddComponent } from './accounts/account-add/account-add.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: MailListComponent
-    },
-    {
-        path: 'mail',
-        component: MailListComponent
-    },
-    {
-        path: 'mail/:id',
-        component: MailViewComponent,
-    },
-    {
-        path: 'import/thunderbird',
-        component: MailImporterComponent
-    },
-    {
-        path: 'accounts',
-        component: AccountListComponent
-    },
-    {
-        path: 'accounts/add',
-        component: AccountAddComponent
-    }
+    { path: '', redirectTo: '/tags/Inbox', pathMatch: 'full' },
+    { path: 'tags/:tag', component: MailListComponent },
+    { path: 'mail/:id', component: MailViewComponent},
+    { path: 'import/thunderbird', component: MailImporterComponent },
+    { path: 'accounts', component: AccountListComponent },
+    { path: 'accounts/add', component: AccountAddComponent }
 ];
 
 @NgModule({

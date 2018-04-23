@@ -63,11 +63,17 @@ const isProd = (process.env.NODE_ENV === 'production');
 
 //add all external css to be added in our index.html--> like as if it's .angular-cli.json
 const styles = [
-  "./src/styles.scss"
+  "./src/styles.scss",
+  "./node_modules/material-design-icons/iconfont/material-icons.css",
+  "./node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+  "./node_modules/froala-editor/css/froala_style.min.css",
+  "./node_modules/font-awesome/css/font-awesome.css"
 ];
 
 //we add all our external scripts we want to load externally, like inserting in our index.html --> like as if it's .angular-cli.json
 const scripts = [
+  "./node_modules/froala-editor/js/froala_editor.pkgd.min.js",
+  "./node_modules/jquery/dist/jquery.min.js"
 ];
 
 //create file path for each , so we use for our excludes and includes where needed
@@ -93,9 +99,9 @@ function getPlugins() {
       "fileName": "[name].bundle.js",
       "filesToConcat": scripts
     }));
-    plugins.push(new InsertConcatAssetsWebpackPlugin([
-      "scripts"
-    ]));
+    // plugins.push(new InsertConcatAssetsWebpackPlugin([
+    //   "scripts"
+    // ]));
   }
 
   plugins.push(new CopyWebpackPlugin([

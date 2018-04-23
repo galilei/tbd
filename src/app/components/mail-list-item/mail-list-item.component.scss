@@ -1,0 +1,98 @@
+@import '~@angular/material/theming';
+
+:host {
+  cursor: pointer;
+}
+
+mat-checkbox {
+  margin-right: 10px;
+}
+
+mat-list-item {
+  button {
+    margin-right: 10px;
+  }
+
+  border-left: 4px transparent solid;
+}
+
+mat-list-item:hover {
+  border-left: 4px red solid;
+}
+
+mat-list-item.read {
+  .preview {
+    color: gray;
+  }
+
+  background: lightgray;
+}
+
+mat-list-item:not(.read) {
+  .from {
+    font-weight: bold;
+  }
+
+  .subject {
+    font-weight: bold;
+  }
+
+  .date {
+    font-weight: bold;
+  }
+
+  background: white;
+}
+
+.from {
+  display: inline-block;
+  width: 15%;
+  min-width: 15%;
+  max-width: 15%;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
+}
+
+.subcontainer {
+  flex: 1 1 auto;
+  display: flex;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  .subject {
+    display: inline;
+    max-width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    line-break: unset;
+    text-overflow: ellipsis;
+  }
+
+  .preview {
+    display: inline-block;
+    flex: 1 0 auto;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    line-break: unset;
+    text-overflow: clip;
+  }
+}
+
+.attachment {
+  display: inline-block;
+  overflow: hidden;
+  text-align: right;
+  max-width: 24px;
+  min-width: 24px;
+}
+
+.date {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+}

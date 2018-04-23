@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <span>{{ subject ? subject : "New Mail"}}</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button (click)="minimized=!minimized">
+    <mat-icon>{{ minimized ? "add" : "remove"}}</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div *ngIf="!minimized">
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="Subject">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-chip-list #chipList multiple="true">
+        <mat-chip *ngFor="let to of toContacts" selectable="true" selected="true" [color]="getChipColor(to.type)" removable="true"
+          (remove)="removeRecipient(to)" (click)="changeType(to)">{{getText(to) + to.name}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input #toInput matInput placeholder="To" [matChipInputFor]="chipList" [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="addKeysCodes"
+          matChipInputAddOnBlur="false" (matChipInputTokenEnd)="addRecipient($event)" [formControl]="toFormControl" required>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)=addSelectedRecipient($event)>
+          <mat-option *ngFor="let candidate of filteredCandidates | async" [value]="candidate">
+            <!-- <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" /> -->
+            <span>{{candidate.name}}</span> |
+            <small>
+              <{{candidate.email}}>
+            </small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-chip-list>
+    </mat-form-field>
+  </form>
+  <editor class="editor"></editor>
+</div>

@@ -24,7 +24,7 @@ export class MailListComponent implements OnChanges {
   }
 
   private _refreshMail() {
-    this.mails = this.mailService.getAll(this.tag)
+    this.mails = this.mailService.getByTag(this.tag)
       .skip(this.first - 1)
       .take(this.size)
       .toArray();

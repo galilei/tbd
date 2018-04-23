@@ -1,41 +1,23 @@
-<mat-toolbar color="secondary">
+<div *ngIf="mails$ | async as mails else nomail" class="main">
+  <div *ngIf="mails.length > 0 else nomail">
+    <mat-paginator [length]="mails[0].total" [pageIndex]=page [pageSize]="size" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)=changePage($event)>
+    </mat-paginator>
 
-  <mat-toolbar-row>
-    <span>{{ first }}-{{ (mails | async).length }} of {{ (mails | async).length }}</span>
-    <!-- <mat-icon class="example-icon">verified_user</mat-icon> -->
-  </mat-toolbar-row>
+    <mat-list>
+      <mail-list-item *ngFor="let mail of mails" [mail]=mail>
+      </mail-list-item>
+    </mat-list>
 
-  <!-- <mat-toolbar-row>
-    <span>Third Line</span>
-    <span class="example-spacer"></span>
-    <mat-icon class="example-icon">favorite</mat-icon>
-    <mat-icon class="example-icon">delete</mat-icon>
-  </mat-toolbar-row> -->
-</mat-toolbar>
+    <mat-paginator [length]="mails[0].total" [pageIndex]=page [pageSize]="size" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)=changePage($event)>
+    </mat-paginator>
+  </div>
+</div>
 
-<table>
-  <tr routerLink="/mail/{{mail.messageId}}" routerLinkActive="active" class="mail-entry" *ngFor="let mail of mails | async">
-    <td>{{ mail.from.value[0].name }}</td>
-    <td><div class="subject">{{ mail.subject }}</div></td>
-    <td><span>{{ mail.date | date : (isToday(mail.date) ? "h:mm a" : undefined) }}</span></td>
-  </tr>
-</table>
-
-<!-- <mat-card >
-    <mat-card-header>
-      <div mat-card-avatar class="header-image"></div>
-      <mat-card-title>
-        <span class="sender">{{ mail.from.text }}</span>
-        <span class="timestamp">{{ mail.date | date : (isToday(mail.date) ? "h:mm a" : undefined) }}</span>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <span class="subject">{{ mail.subject }}</span>
-        <span>{{ mail.body }}</span>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions *ngIf="mail.isInvitation">
-      <button mat-button>ACCEPT</button>
-      <button mat-button>TENTATIVE</button>
-      <button mat-button>DECLINE</button>
-    </mat-card-actions>
-</mat-card> -->
+<ng-template #nomail>
+  <div class="nomail">
+    <div class="internal-nomail">
+      <mat-icon>email</mat-icon>
+      <h1>No emails here</h1>
+    </div>
+  </div>
+</ng-template>

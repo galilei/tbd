@@ -2,7 +2,28 @@ mat-sidenav-container {
   height: 100%;
 
   mat-sidenav {
-    width: 350px;
+    width: 250px;
+
+    button {
+      margin: 12px;
+    }
+  }
+
+  // mat-icon {
+  //   padding-right: 20px !important;
+  // }
+}
+
+mat-sidenav-container.closed {
+  mat-sidenav {
+    transform: translate3d(0, 0, 0) !important;
+    visibility: visible !important;
+    min-width: 64px !important;
+    width: 64px !important;
+  }
+
+  mat-sidenav-content {
+    margin-left: 64px !important;
   }
 }
 
@@ -12,4 +33,10 @@ mat-sidenav-container {
   mat-form-field {
     width: 100%;
   }
+}
+
+.fab-container {
+  position: absolute;
+  right: 100px;
+  top: 30px;
 }

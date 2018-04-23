@@ -1,0 +1,15 @@
+<mat-nav-list>
+  <div *ngFor="let link of links">
+    <a mat-list-item [routerLink]="link.href" routerLinkActive="active" *ngIf="!link.divider else divider">
+      <!-- [href]="link.href" -->
+      <mat-icon mat-list-icon matBadge="22" matBadgeColor="primary" matBadgePosition="above after" matBadgeOverlap="true">{{ link.icon }}</mat-icon>
+      <span mat-line>{{ link.name }}</span>
+      <span>{{ link.unread }}</span>
+    </a>
+  </div>
+  <!-- <tag-view></tag-view> -->
+</mat-nav-list>
+
+<ng-template #divider>
+  <mat-divider></mat-divider>
+</ng-template>

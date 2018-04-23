@@ -1,0 +1,47 @@
+@import '~@angular/material/theming';
+
+:host[ng-reflect-collapsed=true] {
+  mat-nav-list {
+    .mat-list-item-focus {
+      border-left: 4px solid mat-color(mat-palette($mat-red));
+    }
+
+    a:hover {
+      mat-icon {
+        background: lightgray;
+      }
+
+      background: transparent;
+    }
+
+    .active {
+      mat-icon {
+        color: mat-color(mat-palette($mat-red));
+        background: mat-color(mat-palette($mat-red, 100));
+      }
+    }
+  }
+}
+
+mat-nav-list a {
+  span {
+    font-weight: bold;
+  }
+
+  border-left: 4px transparent solid;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+:host:not([ng-reflect-collapsed=true]) {
+  mat-nav-list {
+    .mat-list-item-focus {
+      border-left: 4px solid mat-color(mat-palette($mat-red));
+    }
+
+    .active {
+      color: mat-color(mat-palette($mat-red));
+      background: mat-color(mat-palette($mat-red, 100));
+    }
+  }
+}

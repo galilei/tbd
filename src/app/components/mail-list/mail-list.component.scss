@@ -1,31 +1,35 @@
+@import '~@angular/material/theming';
+
 // .mail-entry {
   // width: 400px;
 // }
 
-  tr {
-    cursor:pointer;
+div.main {
+  width: 100%;
+  height: 100%;
+}
+
+div.nomail {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.internal-nomail {
+  user-select: none;
+  text-align: center;
+  color: mat-color(mat-palette($mat-gray, 300));
+
+  mat-icon {
+    font-size: 100px;
+    width: 100px;
+    height: 100px;
   }
-
- .timestamp {
-   position: absolute;
-   right: 0px;
-   margin-right: 16px;
- }
-
- .sender {
-   font-weight: bold;
- }
-
- .subject {
-    margin:10px;
-    max-width: 50%;
-    white-space: nowrap;
-    overflow: hidden;
-    line-break: unset;
-    text-overflow:ellipsis;
- }
-
-.header-image {
-  background-image: url('../../../assets/unknown.gif');
-  background-size: cover;
 }

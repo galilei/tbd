@@ -1,8 +1,65 @@
 import { Injectable } from '@angular/core';
 import { MailService } from './mail.service';
 import { ESService } from './es.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 import * as _ from 'lodash';
+import { Scheduler } from 'rxjs/Scheduler';
+
+class EsObservable<T> extends Observable<T> {
+  private client: ESService;
+
+  private index: string;
+  private type: string;
+  private query: string;
+
+  private from: number = 0;
+  private size: number = null;
+
+  constructor(client, index, type, query, scheduler) {
+    super(scheduler);
+    this.client = client;
+    this.index = index;
+    this.type = type;
+    this.query = query;
+  }
+
+  static create<T>(client, index, type, query, scheduler?: Scheduler): Observable<T> {
+    return new EsObservable<T>(client, index, type, query, scheduler);
+  }
+
+  skip = function<T>(this: EsObservable<T>, count: number): EsObservable<T> {
+    this.from = count;
+    return this;
+  }
+
+  take = function<T>(this: EsObservable<T>, count: number): EsObservable<T> {
+    this.size = count;
+    return this;
+  }
+
+  protected _subscribe(subscriber: Subscriber<any>) {
+    this.client.search({
+      index: this.index,
+      type: this.type,
+      from: this.from,
+      size: this.size,
+      sort: ['date:desc'],
+      q: this.query ? this.query : null
+    }, function (error, response) {
+      console.log(response)
+      if (error) {
+        subscriber.error(error);
+      } else {
+        response.hits.hits.forEach(function (hit) {
+          subscriber.next(_.merge({total: response.hits.total}, hit._source));
+        });
+      }
+
+      subscriber.complete();
+
+    });
+  }
+}
 
 @Injectable()
 export class ESMailService extends MailService {
@@ -33,28 +90,8 @@ export class ESMailService extends MailService {
     });
   }
 
-  getAll(tag: string) {
-    const me = this;
-    return Observable.create(function (observer) {
-      me.client.search({
-        index: me.mailIndex,
-        type: me.mailType,
-        from: 0,
-        size: 50,
-        q: tag ? `tags:"${tag}"` : null
-      }, function (error, response) {
-        console.log(response)
-        if (error) {
-          observer.error(error);
-        } else {
-          response.hits.hits.forEach(function (hit) {
-            observer.next(hit._source);
-          });
-        }
-
-        observer.complete();
-      });
-    });
+  getByTag(tag: string) {
+    return EsObservable.create(this.client, this.mailIndex, this.mailType, tag ? `tags:"${tag}"` : "");
   }
 
   get(id) {

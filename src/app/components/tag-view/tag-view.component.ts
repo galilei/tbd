@@ -32,16 +32,16 @@ export class TagViewComponent {
               id: tag.key,
               settings: {
                 cssClasses: {
-                  'expanded': 'fa fa-caret-down fa-lg',
-                  'collapsed': 'fa fa-caret-right fa-lg',
+                  'expanded': 'fa fa-caret-down',
+                  'collapsed': 'fa fa-caret-right',
                   'leaf': 'fa fa-lg',
                   'empty': 'fa fa-caret-right disabled'
                 },
-                templates: {
-                  'node': '<i class="fa fa-folder-o fa-lg"></i>',
-                  'leaf': '<i class="fa fa-file-o fa-lg"></i>',
-                  'leftMenu': '<i class="fa fa-navicon fa-lg"></i>'
-                },
+                // templates: {
+                //   'node': '<i class="fa fa-folder-o fa-lg"></i>',
+                //   'leaf': '<i class="fa fa-file-o fa-lg"></i>',
+                //   'leftMenu': '<i class="fa fa-navicon fa-lg"></i>'
+                // },
                 static: true
               },
               children: []

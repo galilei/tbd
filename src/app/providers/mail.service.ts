@@ -6,7 +6,7 @@ export abstract class MailService {
 
   constructor() { }
 
-  abstract getAll(tag: string): Observable<any>;
+  abstract getByTag(tag: string): Observable<any>;
 
   abstract get(id): Observable<any>;
 
