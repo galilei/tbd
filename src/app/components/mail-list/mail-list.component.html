@@ -1,15 +1,22 @@
 <div *ngIf="mails$ | async as mails else nomail" class="main">
   <div *ngIf="mails.length > 0 else nomail">
-    <mat-paginator [length]="mails[0].total" [pageIndex]=page [pageSize]="size" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)=changePage($event)>
-    </mat-paginator>
+    <div class="toolbar-container">
+      <mat-checkbox (click)="selectAll()"></mat-checkbox>
+      <span class="spacer"></span>
+      <mat-paginator [length]="mails[0].total" [pageIndex]=page [pageSize]="size" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)=changePage($event)>
+      </mat-paginator>
+    </div>
 
     <mat-list>
       <mail-list-item *ngFor="let mail of mails" [mail]=mail>
       </mail-list-item>
     </mat-list>
 
-    <mat-paginator [length]="mails[0].total" [pageIndex]=page [pageSize]="size" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)=changePage($event)>
-    </mat-paginator>
+    <div class="toolbar-container">
+      <span class="spacer"></span>
+      <mat-paginator [length]="mails[0].total" [pageIndex]=page [pageSize]="size" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)=changePage($event)>
+      </mat-paginator>
+    </div>
   </div>
 </div>
 

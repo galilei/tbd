@@ -1,0 +1,16 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <div class="avatar"></div>
+      <span class="sender-name">{{ mail.from.value[0].name }}</span>
+      <span class="sender-email">{{ mail.from.value[0].address }}</span>
+    </mat-panel-title>
+    <mat-panel-description>
+      Type your name and age
+    </mat-panel-description>
+    <span class="timestamp">
+      {{ getDate(mail.date) }}
+    </span>
+  </mat-expansion-panel-header>
+  <div [innerHTML]="mail.html"></div>
+</mat-expansion-panel>

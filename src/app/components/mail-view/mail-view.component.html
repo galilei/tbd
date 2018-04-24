@@ -1,4 +1,4 @@
-<mat-card *ngIf="mail$ | async as mail" class="mail-entry">
+<!-- <mat-card *ngIf="mail$ | async as mail" class="mail-entry">
   <mat-icon (click)="location.back()">back</mat-icon>
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
@@ -17,4 +17,10 @@
     <button mat-button>TENTATIVE</button>
     <button mat-button>DECLINE</button>
   </mat-card-actions>
-</mat-card>
+</mat-card> -->
+<div *ngIf="mail$ | async as mail" class="mail-entry">
+  <span class="subject">{{ mail.subject }}</span>
+  <mat-accordion>
+    <mail-item [mail]="mail"></mail-item>
+  </mat-accordion>
+</div>

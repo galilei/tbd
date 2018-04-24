@@ -19,6 +19,7 @@ import { ElectronService } from './providers/electron.service';
 import { MailService } from './providers/mail.service';
 import { ESService } from './providers/es.service';
 import { ESMailService } from './providers/esmail.service';
+import { FakemailService } from './providers/fakemail.service';
 
 import { WebviewDirective } from './directives/webview.directive';
 
@@ -33,7 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
-import { MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatIconModule, MatStepperModule, MAT_LABEL_GLOBAL_OPTIONS, MatFormFieldModule, MatInputModule, MatSidenavModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatOptionModule, MatSelectModule, MatPaginatorModule, MatIconRegistry, MatChipsModule, MatAutocompleteModule, MatTooltipModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatIconModule, MatStepperModule, MAT_LABEL_GLOBAL_OPTIONS, MatFormFieldModule, MatInputModule, MatSidenavModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatOptionModule, MatSelectModule, MatPaginatorModule, MatIconRegistry, MatChipsModule, MatAutocompleteModule, MatTooltipModule, MatExpansionModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
@@ -46,6 +47,7 @@ import { EditorComponent } from './composer/editor/editor.component';
 import { NewMailComponent } from './composer/new-mail/new-mail.component';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { MailListItemComponent } from './components/mail-list-item/mail-list-item.component';
+import { MailItemComponent } from './components/mail-item/mail-item.component';
 
 
 // AoT requires an exported function for factories
@@ -67,7 +69,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     EditorComponent,
     NewMailComponent,
     LeftMenuComponent,
-    MailListItemComponent
+    MailListItemComponent,
+    MailItemComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +98,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatAutocompleteModule,
     MatListModule,
     MatTooltipModule,
+    MatExpansionModule,
 
     // For forms
     ReactiveFormsModule,
@@ -130,7 +134,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     },
     {
       provide: MailService,
-      useClass: ESMailService
+      useClass: FakemailService
     }
   ],
   bootstrap: [AppComponent]
