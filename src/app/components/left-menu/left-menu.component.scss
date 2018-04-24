@@ -28,6 +28,12 @@ mat-nav-list a {
     font-weight: bold;
   }
 
+  .mat-list-item-content {
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    z-index: 1;
+  }
+
   border-left: 4px transparent solid;
   border-top-right-radius: 24px;
   border-bottom-right-radius: 24px;

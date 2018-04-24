@@ -37,7 +37,7 @@ class EsObservable<T> extends Observable<T> {
     return this;
   }
 
-  protected _subscribe(subscriber: Subscriber<any>) {
+  public _subscribe(subscriber: Subscriber<any>) {
     this.client.search({
       index: this.index,
       type: this.type,
