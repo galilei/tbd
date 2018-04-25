@@ -3,6 +3,7 @@ import { MailService } from '../../providers/mail.service';
 import { Observable } from 'rxjs';
 import { PageEvent } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
+import { PopService } from '../../accounts/pop.service';
 
 @Component({
   selector: 'mail-list',
@@ -23,7 +24,7 @@ export class MailListComponent implements OnInit, OnChanges {
   @Input()
   private size = 50;
 
-  constructor(public mailService: MailService, private route: ActivatedRoute) {
+  constructor(public mailService: MailService, private popService : PopService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {

@@ -34,7 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
-import { MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatIconModule, MatStepperModule, MAT_LABEL_GLOBAL_OPTIONS, MatFormFieldModule, MatInputModule, MatSidenavModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatOptionModule, MatSelectModule, MatPaginatorModule, MatIconRegistry, MatChipsModule, MatAutocompleteModule, MatTooltipModule, MatExpansionModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatIconModule, MatStepperModule, MAT_LABEL_GLOBAL_OPTIONS, MatFormFieldModule, MatInputModule, MatSidenavModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatOptionModule, MatSelectModule, MatPaginatorModule, MatIconRegistry, MatChipsModule, MatAutocompleteModule, MatTooltipModule, MatExpansionModule, MatDialogModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
@@ -48,6 +48,8 @@ import { NewMailComponent } from './composer/new-mail/new-mail.component';
 import { LeftMenuComponent } from './components/left-menu/left-menu.component';
 import { MailListItemComponent } from './components/mail-list-item/mail-list-item.component';
 import { MailItemComponent } from './components/mail-item/mail-item.component';
+import { AccountService } from './accounts/account.service';
+import { PopService } from './accounts/pop.service';
 
 
 // AoT requires an exported function for factories
@@ -99,6 +101,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatListModule,
     MatTooltipModule,
     MatExpansionModule,
+    MatDialogModule,
 
     // For forms
     ReactiveFormsModule,
@@ -128,6 +131,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         float: 'auto'
       }
     },
+    AccountService,
+    PopService,
     {
       provide: ErrorStateMatcher,
       useClass: ShowOnDirtyErrorStateMatcher

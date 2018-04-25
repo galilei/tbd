@@ -1,45 +1,82 @@
-<mat-horizontal-stepper linear="false" #stepper="matHorizontalStepper">
-  <mat-step stepControl="firstFormGroup">
+<mat-horizontal-stepper linear="true" (selectionChange)="stepChanged($event)" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="userDataFormGroup">
     <ng-template matStepLabel>Account details</ng-template>
-    <form>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Name" [formControl]="nameFormControl" required>
-        </mat-form-field>
+    <form [formGroup]="userDataFormGroup">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Name" formControlName="name" required>
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" [formControl]="emailFormControl" type="email" required>
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Email" formControlName="email" type="email" required>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" type="password">
-        </mat-form-field>
-      <div>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Password" formControlName="password" type="password">
+      </mat-form-field>
+      <div class="center">
         <button mat-raised-button color="primary" matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
-  <mat-step stepControl="secondFormGroup">
+  <mat-step [stepControl]="serverDataFormGroup">
     <ng-template matStepLabel>Server details</ng-template>
-    <!-- <form>
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+    <form [formGroup]="serverDataFormGroup">
+      <div class="form-divide-50">
+        <mat-form-field class="form-divide-50">
+          <input matInput placeholder="POP Server" formControlName="popServer" required>
+        </mat-form-field>
+        <mat-form-field class="form-divide-50">
+          <mat-select placeholder="Port" formControlName="popPort">
+            <mat-option *ngFor="let port of popPorts" [value]="port">
+              {{ port }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-divide-50">
+          <input matInput placeholder="Username" formControlName="popUsername" required>
+        </mat-form-field>
+        <mat-form-field class="form-divide-50">
+          <input matInput placeholder="Password" formControlName="popPassword" type="password" required>
+        </mat-form-field>
       </div>
-    </form> -->
+      <div class="form-divide-50">
+        <mat-form-field class="form-divide-50">
+          <input matInput placeholder="SMTP Server" formControlName="smtpServer" required>
+        </mat-form-field>
+        <mat-form-field class="form-divide-50">
+          <mat-select placeholder="Port" formControlName="smtpPort">
+            <mat-option *ngFor="let port of smtpPorts" [value]="port">
+              {{ port }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form-divide-50">
+          <input matInput placeholder="Username" formControlName="smtpUsername" required>
+        </mat-form-field>
+        <mat-form-field class="form-divide-50">
+          <input matInput placeholder="Password" formControlName="smtpPassword" type="password" required>
+        </mat-form-field>
+      </div>
+      <div class="center">
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+    <div class="center">
+      <mat-icon>
+        check
+      </mat-icon>
+    </div>
+    <div class="center">
+      <span>Great {{ userDataFormGroup.controls.name.value.split( )[0] }}. You're all set!</span>
+    </div>
+    <div class="center">
+      <button mat-raised-button color="primary" (click)="closeDialog()">Okay</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

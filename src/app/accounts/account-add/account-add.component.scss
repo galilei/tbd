@@ -1,13 +1,27 @@
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
+.full-width {
   width: 100%;
 }
 
 mat-horizontal-stepper {
   height: 100%;
+}
+
+.form-divide-50 {
+  width: 50%;
+  display: inline-block;
+}
+
+mat-form-field {
+  padding-right: 16px;
+}
+
+mat-icon {
+  color: green;
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+}
+
+.center {
+  text-align: center;
 }

@@ -2,6 +2,9 @@
   <div *ngIf="mails.length > 0 else nomail">
     <div class="toolbar-container">
       <mat-checkbox (click)="selectAll()"></mat-checkbox>
+      <button mat-icon-button (click)="popService.verifyMail()">
+        <mat-icon>refresh</mat-icon>
+      </button>
       <span class="spacer"></span>
       <mat-paginator [length]="mails[0].total" [pageIndex]=page [pageSize]="size" [pageSizeOptions]="[5, 10, 25, 50, 100]" (page)=changePage($event)>
       </mat-paginator>

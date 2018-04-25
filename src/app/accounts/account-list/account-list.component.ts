@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MailService } from '../../providers/mail.service';
+import { MatDialog } from '@angular/material';
+import { AccountAddComponent } from '../account-add/account-add.component';
+import { Account } from '../Account';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-account-list',
@@ -9,11 +12,16 @@ import { MailService } from '../../providers/mail.service';
 })
 export class AccountListComponent implements OnInit {
 
-  private accounts$ : Observable<any[]>;
+  private accounts$ : Observable<Account[]>;
 
-  constructor(private mailService: MailService) { }
+  constructor(public dialog : MatDialog, private accountManager : AccountService) { }
 
   ngOnInit() {
+    this.accounts$ = this.accountManager.getAccounts().toArray();
+  }
+
+  addAccount() {
+    this.dialog.open(AccountAddComponent);
   }
 
 }
