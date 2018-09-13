@@ -14,20 +14,20 @@ export class LeftMenuComponent implements OnInit {
     {
       icon: "inbox",
       name: "Inbox",
-      href: "/tags/Inbox",
+      href: "/mail/#inbox",
       unread: 123
     }, {
       icon: "send",
       name: "Sent",
-      href: "/tags/Sent"
+      href: "/mail/#sent",
     }, {
       icon: "star",
       name: "Starred",
-      href: "/tags/Starred"
+      href: "/mail/#starred",
     }, {
       icon: "drafts",
       name: "Drafts",
-      href: "/tags/Drafts",
+      href: "/mail/#drafts",
       unread: 1
     }, {
       debug: true,

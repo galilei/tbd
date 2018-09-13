@@ -1,16 +1,20 @@
-<mat-list-item routerLink="/mail/{{mail.messageId}}" routerLinkActive="active" [class.read]="!mail.read">
+<mat-list-item [class.read]="!mail.read">
   <mat-checkbox>
   </mat-checkbox>
   <button mat-icon-button>
     <mat-icon>star_outline</mat-icon>
   </button>
-  <div class="from" [matTooltip]="mail.from?.value[0].address" matTooltipShowDelay="300" matTooltipPosition="above">{{ mail.from?.value[0].name }}</div>
-  <div class='subcontainer'>
-    <div class="subject">{{ mail?.subject }}</div>
-    <div class="preview" *ngIf="mail?.text"> - {{ mail?.text }}</div>
+  <div routerLink="{{mail.messageId}}" class="link">
+    <div class="from" [matTooltip]="mail.from?.value[0].address" matTooltipShowDelay="300" matTooltipPosition="above">{{
+      mail.from?.value[0].name }}</div>
+    <div class='subcontainer'>
+      <div class="subject">{{ mail?.subject }}</div>
+      <div class="preview" *ngIf="mail?.text"> - {{ mail?.text }}</div>
+    </div>
+    <div class="attachment">
+      <mat-icon>{{ mail.attachments?.length ? 'attachment' : '' }}</mat-icon>
+    </div>
+    <span class="date" [matTooltip]="getDate(mail.date)" matTooltipShowDelay="300" matTooltipPosition="above" matSuffix>{{
+      getSmallDate(mail.date) }}</span>
   </div>
-  <div class="attachment">
-    <mat-icon>{{ mail.attachments?.length ? 'attachment' : '' }}</mat-icon>
-  </div>
-  <span class="date" [matTooltip]="getDate(mail.date)" matTooltipShowDelay="300" matTooltipPosition="above" matSuffix>{{ getSmallDate(mail.date) }}</span>
 </mat-list-item>

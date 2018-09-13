@@ -96,3 +96,11 @@ mat-list-item:not(.read) {
   white-space: nowrap;
   overflow: hidden;
 }
+
+div.link {
+  outline: transparent;
+  display: inherit;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}

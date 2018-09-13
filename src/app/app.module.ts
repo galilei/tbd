@@ -38,7 +38,7 @@ import { MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatIconModule
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
-import { MainComponent } from './pages/main/main.component';
+import { MainPage } from './pages/main/main.page';
 import { TagViewComponent } from './components/tag-view/tag-view.component';
 import { AccountListComponent } from './accounts/account-list/account-list.component';
 import { MailImporterService } from './providers/mail-importer.service';
@@ -63,7 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MailListComponent,
     WebviewDirective,
     MailViewComponent,
-    MainComponent,
+    MainPage,
     MailImporterComponent,
     TagViewComponent,
     AccountListComponent,

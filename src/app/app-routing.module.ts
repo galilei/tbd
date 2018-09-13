@@ -1,4 +1,4 @@
-import { MainComponent } from './pages/main/main.component';
+import { MainPage } from './pages/main/main.page';
 import { MailViewComponent } from './components/mail-view/mail-view.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,16 +9,35 @@ import { AccountListComponent } from './accounts/account-list/account-list.compo
 import { AccountAddComponent } from './accounts/account-add/account-add.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/tags/Inbox', pathMatch: 'full' },
-    { path: 'tags/:tag', component: MailListComponent },
-    { path: 'mail/:id', component: MailViewComponent},
-    { path: 'import/thunderbird', component: MailImporterComponent },
-    { path: 'accounts', component: AccountListComponent },
-    { path: 'accounts/add', component: AccountAddComponent }
+    {
+        path: '',
+        redirectTo: 'mail/inbox',
+        pathMatch: 'full',
+    },
+    {
+        component: MailListComponent,
+        path: 'mail/:label'
+    },
+    {
+        component: MailViewComponent,
+        path: 'mail/:label/:id',
+    },
+    // {
+    //     path: 'import/thunderbird',
+    //     component: MailImporterComponent
+    // },
+    // {
+    //     path: 'accounts',
+    //     component: AccountListComponent
+    // },
+    // {
+    //     path: 'accounts/add',
+    //     component: AccountAddComponent
+    // }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {useHash: true})],
+    imports: [RouterModule.forRoot(routes, { useHash: true })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

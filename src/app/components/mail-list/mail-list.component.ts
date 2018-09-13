@@ -14,7 +14,7 @@ export class MailListComponent implements OnInit, OnChanges {
   private mails$: Observable<any[]> = Observable.of([]);
 
   @Input()
-  private tag: string = 'Inbox';
+  private label: string = 'Inbox';
 
   @Input()
   private first = 1;
@@ -28,13 +28,12 @@ export class MailListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.route.params.pluck('tag')
-      .forEach(tag => this._refreshMail(tag));
+    this.route.params.pluck('label').subscribe(label => this._refreshMail(label));
   }
 
-  private _refreshMail(tag) {
-    this.tag = tag;
-    this.mails$ = this.mailService.getByTag(tag)
+  private _refreshMail(label) {
+    this.label = label;
+    this.mails$ = this.mailService.getByTag(label)
       .skip(this.first - 1)
       .take(this.size)
       .toArray();
@@ -45,16 +44,16 @@ export class MailListComponent implements OnInit, OnChanges {
     this.first = $event.pageSize * $event.pageIndex;
     this.size = $event.pageSize
     this.page = $event.pageIndex;
-    this._refreshMail(this.tag)
+    this._refreshMail(this.label)
   }
 
   ngOnChanges(changes) {
     console.log(changes)
-    this._refreshMail(this.tag);
+    this._refreshMail(this.label);
   }
 
   setTag(tag) {
-    this.tag = tag;
-    this._refreshMail(this.tag);
+    this.label = tag;
+    this._refreshMail(this.label);
   }
 }
